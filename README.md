@@ -17,14 +17,21 @@ Windows
 ###使用方法(Linux为例)
 1. 下载脚本
 > git clone https://github.com/hit-hanbo/Hi-Loggin.git
+
 2. 建立配置文件
 > touch Hi-Loggin/login.cfg
 按照以下格式填写账号密码
+
 > 用户名:密码，例如：
+
 > 1234567890:12345
+
 3. 连接校园网
 > python3 Login.py auto #自动连接
+
 > python3 Login.py manual #手动连接
+
+
 > python3 Login.py logout #注销
 
 
