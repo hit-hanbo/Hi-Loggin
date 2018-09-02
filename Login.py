@@ -77,6 +77,7 @@ class HIT_login:
         if r['result'] == 'success':
             print("Welcome %s Login Success !" % user_id)
             self.current_user = user_id
+            return user_id
         else:
             print("Login Error !")
 
