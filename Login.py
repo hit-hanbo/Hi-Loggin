@@ -89,6 +89,7 @@ class HIT_login:
             if r['result'] == 'success':
                 print("Welcome %s Login Success !" % user_id)
                 self.current_user = user_id
+                return user_id
         print("Auto LOGIN Fail !")
         
     def logout(self):
@@ -118,5 +119,6 @@ class HIT_login:
 
 
 if __name__ == '__main__':
-    pass
+    option = sys.argv[-1]
+    s = HIT_login(option)
 
