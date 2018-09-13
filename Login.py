@@ -54,8 +54,10 @@ class HIT_login:
         url = 'http://123.123.123.123'
         pattern = re.compile(r"wlanuserip.*'")
         portal_url = 'http://202.118.253.94:8080/eportal/InterFace.do?method=login'
-        r = requests.get(url, timeout=15)
-        r.raise_for_status()
+        try:
+            r = requests.get(url, timeout=15)
+        except requests.exceptions.ConnectionError:
+            print("Connection Error, Please Connect to HIT-WLAN and try again !")
         string = pattern.findall(r.text)[0][0:-1]
         data = {
             "userId": username,
@@ -83,9 +85,13 @@ class HIT_login:
 
     def auto_login(self):
         print("Auto Mode")
+        r = {"result": "null"}
         self.load_cfg()
         for (user_id, pwd) in self.__users_res.items():
-            r = self.login_base(user_id, pwd)
+            try:
+                r = self.login_base(user_id, pwd)
+            except UnboundLocalError:
+                pass
             if r['result'] == 'success':
                 print("Welcome %s Login Success !" % user_id)
                 self.current_user = user_id
