@@ -26,6 +26,8 @@ class HIT_login:
             self.auto_login()
         elif (option == 'manual'):
             self.manual_login()
+        elif (option == 'userinfo'):
+            self.user_info()
         elif (option == 'logout'):
             self.logout()
         else:
@@ -112,7 +114,13 @@ class HIT_login:
         post_data = "userIndex=" + str(user_index)
         res = requests.post(url, data=post_data)
         res.encoding = res.apparent_encoding
-        self.user_msg = res.json()
+        self.user_msg_origin = res.json()
+        self.user_msg = {
+                "Name": self.user_msg_origin['userName'],
+                "StudentID": self.user_msg_origin['userId'],
+                "RemainTime": self.user_msg_origin['maxLeavingTime']
+            }
+        print(self.user_msg)
         return self.user_msg
 
     def killall(self, username, password):
