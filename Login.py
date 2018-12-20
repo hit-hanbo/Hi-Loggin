@@ -120,7 +120,7 @@ class HIT_login:
                 "StudentID": self.user_msg_origin['userId'],
                 "RemainTime": self.user_msg_origin['maxLeavingTime']
             }
-        print(self.user_msg)
+        self.current_user = self.user_msg_origin['userName']
         return self.user_msg
 
     def killall(self, username, password):
